@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,7 +43,7 @@ public class MyAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
         Log.d("MML", "getView(), position:" + position);
         if (convertView == null)
@@ -52,6 +54,7 @@ public class MyAdapter extends BaseAdapter {
             holder = new ViewHolder();
             holder.tv = (TextView)convertView.findViewById(R.id.textView);
             holder.btn = (Button) convertView.findViewById(R.id.button);
+            holder.chk = (CheckBox) convertView.findViewById(R.id.checkBox);
             convertView.setTag(holder);
         }
         else
@@ -67,11 +70,19 @@ public class MyAdapter extends BaseAdapter {
                 Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
             }
         });
+        holder.chk.setChecked(b[position]);
+        holder.chk.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                b[position] = isChecked;
+            }
+        });
         return convertView;
     }
     static class ViewHolder
     {
         TextView tv;
         Button btn;
+        CheckBox chk;
     }
 }
