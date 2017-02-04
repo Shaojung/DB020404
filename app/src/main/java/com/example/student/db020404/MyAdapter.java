@@ -38,20 +38,27 @@ public class MyAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        ViewHolder holder;
         Log.d("MML", "getView(), position:" + position);
         if (convertView == null)
         {
             Log.d("MML", "convertView: null");
+            LayoutInflater inflater = LayoutInflater.from(context);
+            convertView = inflater.inflate(R.layout.myitem, null);
+            holder = new ViewHolder();
+            holder.tv = (TextView)convertView.findViewById(R.id.textView);
+            convertView.setTag(holder);
         }
         else
         {
             Log.d("MML", "convertView:" + convertView.toString());
+            holder = (ViewHolder) convertView.getTag();
         }
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View v = inflater.inflate(R.layout.myitem, null);
-        TextView tv = (TextView) v.findViewById(R.id.textView);
-        tv.setText(data[position]);
-
-        return v;
+        holder.tv.setText(data[position]);
+        return convertView;
+    }
+    static class ViewHolder
+    {
+        TextView tv;
     }
 }
