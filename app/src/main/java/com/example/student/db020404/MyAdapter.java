@@ -6,7 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by student on 2017/2/4.
@@ -47,6 +49,7 @@ public class MyAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.myitem, null);
             holder = new ViewHolder();
             holder.tv = (TextView)convertView.findViewById(R.id.textView);
+            holder.btn = (Button) convertView.findViewById(R.id.button);
             convertView.setTag(holder);
         }
         else
@@ -55,10 +58,18 @@ public class MyAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
         holder.tv.setText(data[position]);
+        final String msg = data[position];
+        holder.btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+            }
+        });
         return convertView;
     }
     static class ViewHolder
     {
         TextView tv;
+        Button btn;
     }
 }
