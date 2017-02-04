@@ -39,6 +39,14 @@ public class MyAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         Log.d("MML", "getView(), position:" + position);
+        if (convertView == null)
+        {
+            Log.d("MML", "convertView: null");
+        }
+        else
+        {
+            Log.d("MML", "convertView:" + convertView.toString());
+        }
         LayoutInflater inflater = LayoutInflater.from(context);
         View v = inflater.inflate(R.layout.myitem, null);
         TextView tv = (TextView) v.findViewById(R.id.textView);
