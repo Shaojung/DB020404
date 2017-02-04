@@ -70,6 +70,7 @@ public class MyAdapter extends BaseAdapter {
                 Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
             }
         });
+        holder.chk.setOnCheckedChangeListener(null);
         holder.chk.setChecked(b[position]);
         holder.chk.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
