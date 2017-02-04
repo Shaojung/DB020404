@@ -17,10 +17,12 @@ import android.widget.Toast;
 public class MyAdapter extends BaseAdapter {
     Context context;
     String data[];
-    public MyAdapter(Context c, String str[])
+    boolean b[];
+    public MyAdapter(Context c, String str[], boolean b[])
     {
         this.context = c;
         this.data = str;
+        this.b = b;
     }
     @Override
     public int getCount() {
